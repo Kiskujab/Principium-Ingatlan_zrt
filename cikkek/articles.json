@@ -1,0 +1,13 @@
+{
+  "pageTitle": "Hasznos tippek és szakmai cikkek",
+  "pageLead": "Gyakorlati útmutatók az ingatlanértékeléshez, értékesítéshez és a budapesti piac aktuális trendjeihez — szakértői szemmel összeállítva.",
+  "articles": [
+    {
+      "id": "mennyit-er-a-lakasom",
+      "cim": "Mennyit ér a lakásom?",
+      "leiras": "Szakértői útmutató a reális értékbecsléshez: piaci összehasonlítás, lokáció, energetika és mikor érdemes hivatalos becslést kérni.",
+      "kep": "../images/mennyiter.jpg",
+      "link": "../Mennyit-er-a-lakasom/index.html"
+    }
+  ]
+}

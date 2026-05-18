@@ -1,0 +1,36 @@
+{
+  "pageTitle": "Gyakran ismételt kérdések",
+  "pageLead": "Válaszok az ingatlanértékesítés, értékbecslés és együttműködés legfontosabb kérdéseire.",
+  "items": [
+    {
+      "category": "Értékbecslés és árazás",
+      "question": "Mennyibe kerül egy szakértői értékbecslés?",
+      "answer": "Az ingatlan típusától, méretétől és a dokumentáció mértékétől függ. Rövid telefonos vagy e-mailes egyeztetés után személyre szabott ajánlatot adunk — kötelezettség nélkül."
+    },
+    {
+      "category": "Értékbecslés és árazás",
+      "question": "Mennyi idő alatt készül el a becslés?",
+      "answer": "Egyszerűbb lakásoknál általában 2–5 munkanap, összetettebb ingatlanoknál vagy hiányzó dokumentáció esetén ennél hosszabb is lehet. Az egyeztetéskor pontos határidőt adunk."
+    },
+    {
+      "category": "Értékesítés",
+      "question": "Milyen dokumentumokra van szükség az eladáshoz?",
+      "answer": "Tipikusan tulajdoni lap, energetikai tanúsítvány (ha kötelező), közös képviselői jóváhagyás társasháznál, valamint az adásvételi szerződéshez szükséges egyéb iratok. Segítünk összeállítani a listát az Ön ingatlanához."
+    },
+    {
+      "category": "Értékesítés",
+      "question": "Mennyi ideig tart átlagosan egy eladás Budapesten?",
+      "answer": "Az árazástól, az ingatlan állapotától és a lokációtól függ. Reálisan árazott, jól bemutatott ingatlannál gyakran 4–12 hét a tipikus tartomány — de minden eset egyedi."
+    },
+    {
+      "category": "Együttműködés",
+      "question": "Milyen területeken dolgoznak?",
+      "answer": "Elsősorban Budapesten és agglomerációban, de egyedi megbízások esetén más régiókban is egyeztetünk. Írjon vagy hívjon, és megmondjuk, tudunk-e segíteni."
+    },
+    {
+      "category": "Együttműködés",
+      "question": "Hogyan lehet felvenni a kapcsolatot?",
+      "answer": "Telefonon, e-mailben vagy az alábbi elérhetőségeken. Az első konzultáció általában rövid, célzott — meghallgatjuk az igényét, és javaslatot teszünk a következő lépésekre."
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+/* Aloldal — Principium sötétkék / arany, olvasásra optimalizálva */
+
+:root {
+  --navy-950: #0a1628;
+  --navy-900: #0f1f35;
+  --navy-800: #152a45;
+  --gold-400: #c9a227;
+  --gold-500: #b8922a;
+  --gold-300: #e4c76a;
+  --white: #fafbfc;
+  --muted: rgba(250, 251, 252, 0.78);
+  --font-sans: "Montserrat", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --article-max: 800px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.article-page {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: var(--white);
+  background: var(--navy-950);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--gold-300);
+  text-decoration: none;
+  transition: color 0.2s var(--ease-out);
+}
+
+a:hover {
+  color: var(--white);
+}
+
+/* Fejléc — bg_about */
+.article-header {
+  position: relative;
+  min-height: clamp(14rem, 38vw, 22rem);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem 1.5rem 2.75rem;
+}
+
+.article-header-bg {
+  position: absolute;
+  inset: 0;
+  background-image: var(--article-header-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.article-header-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 22, 40, 0.55) 0%,
+    rgba(10, 22, 40, 0.78) 55%,
+    rgba(10, 22, 40, 0.92) 100%
+  );
+}
+
+.article-header-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: calc(var(--article-max) + 3rem);
+  margin: 0 auto;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  padding: 0.65rem 1.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy-950);
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
+  border: 1px solid rgba(228, 199, 106, 0.65);
+  transition: background 0.25s var(--ease-out), color 0.25s;
+}
+
+.btn-back:hover {
+  background: var(--gold-300);
+  color: var(--navy-950);
+}
+
+.article-kicker {
+  margin: 0 0 0.65rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+}
+
+.article-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 4.2vw, 2.65rem);
+  line-height: 1.2;
+  margin: 0;
+  max-width: 20ch;
+  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+}
+
+@media (min-width: 640px) {
+  .article-title {
+    max-width: none;
+  }
+}
+
+/* Tartalom */
+.article-main {
+  padding: 3rem 1.5rem 4rem;
+  background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 35%);
+  border-top: 1px solid rgba(201, 162, 39, 0.15);
+}
+
+.article-container {
+  max-width: var(--article-max);
+  margin: 0 auto;
+}
+
+.article-lead {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2.2vw, 1.28rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0 0 2.75rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+.article-body .article-p {
+  font-size: 1.0625rem;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.95;
+  margin: 0 0 1.75rem;
+  letter-spacing: 0.01em;
+}
+
+.article-body .article-p:last-child {
+  margin-bottom: 0;
+}
+
+.article-body .article-h2 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.35rem, 2.8vw, 1.65rem);
+  color: var(--white);
+  line-height: 1.35;
+  margin: 2.75rem 0 1.25rem;
+  padding-top: 0.25rem;
+}
+
+.article-body .article-h2:first-child {
+  margin-top: 0;
+}
+
+.article-body .article-h2::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  margin-top: 0.75rem;
+  background: linear-gradient(90deg, var(--gold-400), transparent);
+}
+
+.article-error code {
+  font-size: 0.9em;
+  color: var(--gold-300);
+}
+
+/* CTA */
+.article-cta {
+  margin-top: 3.5rem;
+  padding: 2.25rem 2rem;
+  background: linear-gradient(135deg, rgba(21, 42, 69, 0.85) 0%, rgba(15, 31, 53, 0.95) 100%);
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(228, 199, 106, 0.12);
+  text-align: center;
+}
+
+.article-cta-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 3vw, 1.6rem);
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--gold-300);
+}
+
+.article-cta-text {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.85;
+  margin: 0 0 1.5rem;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.article-cta-email-wrap {
+  margin: 0;
+}
+
+.article-cta-email {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy-950);
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
+  border: 1px solid var(--gold-300);
+  word-break: break-word;
+}
+
+.article-cta-email:hover {
+  background: var(--gold-300);
+  color: var(--navy-950);
+}
+
+.article-cta-email[aria-disabled="true"] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Lábléc */
+.article-footer {
+  padding: 2rem 1.5rem;
+  border-top: 1px solid rgba(201, 162, 39, 0.12);
+  background: var(--navy-950);
+}
+
+.article-footer-copy {
+  margin: 0;
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: rgba(250, 251, 252, 0.38);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  a,
+  .btn-back,
+  .article-cta-email {
+    transition: none;
+  }
+}

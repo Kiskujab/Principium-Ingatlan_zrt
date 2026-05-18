@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gyakran ismételt kérdések — Principium Ingatlan Zrt.">
+  <title>GYIK | Principium Ingatlan Zrt.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+</head>
+<body class="faq-page">
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html#home" class="logo">Principium Ingatlan Zrt.</a>
+      <nav class="nav" aria-label="Fő navigáció">
+        <a href="../index.html#home">Kezdőlap</a>
+        <a href="../index.html#about">Bemutatkozás</a>
+        <a href="../cikkek/index.html">Hasznos tippek</a>
+        <a href="./index.html" aria-current="page">GYIK</a>
+        <a href="../index.html#contact">Elérhetőség</a>
+      </nav>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü megnyitása">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav" hidden>
+      <a href="../index.html#home">Kezdőlap</a>
+      <a href="../index.html#about">Bemutatkozás</a>
+      <a href="../cikkek/index.html">Hasznos tippek</a>
+      <a href="./index.html" aria-current="page">GYIK</a>
+      <a href="../index.html#contact">Elérhetőség</a>
+    </div>
+  </header>
+
+  <section class="faq-hero parallax-section" aria-labelledby="faq-title">
+    <div class="faq-hero-bg parallax-bg" style="--bg-image: url('../images/bg_about.jpg');"></div>
+    <div class="faq-hero-overlay"></div>
+    <div class="faq-hero-content">
+      <p class="faq-eyebrow">Principium — támogatás</p>
+      <h1 id="faq-title" class="faq-title"></h1>
+      <p id="faq-lead" class="faq-lead"></p>
+    </div>
+  </section>
+
+  <main class="faq-main">
+    <div class="faq-inner">
+      <div id="faq-root" class="faq-root"></div>
+      <p id="faq-empty" class="faq-empty" hidden>Jelenleg nincs megjeleníthető kérdés.</p>
+      <p id="faq-error" class="faq-error" hidden>A GYIK betöltése nem sikerült. Használjon helyi szervert (pl. Live Server).</p>
+    </div>
+  </main>
+
+  <footer class="faq-footer">
+    <a href="../index.html#home" class="btn-back">Vissza a főoldalra</a>
+    <p class="faq-footer-copy">&copy; <span id="faq-year"></span> Principium Ingatlan Zrt.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
