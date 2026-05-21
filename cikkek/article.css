@@ -1,4 +1,4 @@
-/* Aloldal — Principium sötétkék / arany, olvasásra optimalizálva */
+/* Univerzális cikk sablon — Principium sötétkék / arany */
 
 :root {
   --navy-950: #0a1628;
@@ -45,9 +45,27 @@ a:hover {
   color: var(--white);
 }
 
-/* Fejléc — bg_about */
-.article-header {
+.parallax-section {
   position: relative;
+}
+
+.parallax-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+.article-header {
   min-height: clamp(14rem, 38vw, 22rem);
   display: flex;
   align-items: flex-end;
@@ -55,13 +73,7 @@ a:hover {
 }
 
 .article-header-bg {
-  position: absolute;
-  inset: 0;
-  background-image: var(--article-header-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
+  filter: saturate(1.05) contrast(1.02);
 }
 
 .article-header-overlay {
@@ -118,17 +130,9 @@ a:hover {
   font-size: clamp(1.75rem, 4.2vw, 2.65rem);
   line-height: 1.2;
   margin: 0;
-  max-width: 20ch;
   text-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
 }
 
-@media (min-width: 640px) {
-  .article-title {
-    max-width: none;
-  }
-}
-
-/* Tartalom */
 .article-main {
   padding: 3rem 1.5rem 4rem;
   background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 35%);
@@ -188,12 +192,15 @@ a:hover {
   background: linear-gradient(90deg, var(--gold-400), transparent);
 }
 
-.article-error code {
-  font-size: 0.9em;
+.article-error-block {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  text-align: center;
   color: var(--gold-300);
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(21, 42, 69, 0.5);
 }
 
-/* CTA */
 .article-cta {
   margin-top: 3.5rem;
   padding: 2.25rem 2rem;
@@ -249,16 +256,24 @@ a:hover {
   cursor: not-allowed;
 }
 
-/* Lábléc */
 .article-footer {
   padding: 2rem 1.5rem;
   border-top: 1px solid rgba(201, 162, 39, 0.12);
   background: var(--navy-950);
+  text-align: center;
+}
+
+.article-footer-home {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-400);
 }
 
 .article-footer-copy {
   margin: 0;
-  text-align: center;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   color: rgba(250, 251, 252, 0.38);

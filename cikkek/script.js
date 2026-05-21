@@ -77,8 +77,9 @@
 
     var link = document.createElement("a");
     link.className = "article-card-link";
-    link.href = article.link ? String(article.link).trim() : "#";
-    if (article.id) link.setAttribute("data-article-id", String(article.id));
+    var articleId = article.id ? String(article.id).trim() : "";
+    link.href = articleId ? "cikk.html?id=" + encodeURIComponent(articleId) : "#";
+    if (articleId) link.setAttribute("data-article-id", articleId);
 
     var media = document.createElement("div");
     media.className = "article-card-media";
