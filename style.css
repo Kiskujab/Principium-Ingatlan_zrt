@@ -572,6 +572,125 @@ img {
   }
 }
 
+/* Testimonials — főoldali előnézet */
+.testimonials {
+  background: var(--navy-950);
+  border-top: 1px solid rgba(201, 162, 39, 0.12);
+}
+
+.testimonials-preview {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.testimonials-actions {
+  text-align: center;
+}
+
+.testimonials-actions .btn-primary {
+  color: var(--navy-950);
+}
+
+.testimonials-actions .btn-primary:hover {
+  color: var(--navy-950);
+}
+
+.review-card {
+  margin: 0;
+  padding: 1.75rem 1.5rem 1.35rem;
+  background: rgba(21, 42, 69, 0.5);
+  border: 1px solid rgba(201, 162, 39, 0.22);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.review-card:hover {
+  border-color: rgba(201, 162, 39, 0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+}
+
+.review-stars {
+  display: flex;
+  gap: 0.2rem;
+  margin-bottom: 1.1rem;
+}
+
+.review-star {
+  font-size: 1.05rem;
+  line-height: 1;
+  color: rgba(250, 251, 252, 0.18);
+}
+
+.review-star--filled {
+  color: var(--gold-400);
+  text-shadow: 0 0 12px rgba(201, 162, 39, 0.35);
+}
+
+.review-quote {
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: none;
+  flex: 1;
+}
+
+.review-quote p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.7;
+}
+
+.review-quote p::before {
+  content: "„";
+  color: var(--gold-400);
+}
+
+.review-quote p::after {
+  content: "”";
+  color: var(--gold-400);
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(201, 162, 39, 0.15);
+}
+
+.review-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+  font-style: normal;
+}
+
+.review-date {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: rgba(250, 251, 252, 0.45);
+}
+
+@media (max-width: 768px) {
+  .testimonials-preview {
+    grid-template-columns: 1fr;
+    max-width: 28rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 /* Footer */
 .site-footer {
   background: var(--navy-950);

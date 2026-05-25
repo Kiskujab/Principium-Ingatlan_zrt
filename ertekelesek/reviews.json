@@ -1,0 +1,76 @@
+{
+  "pageTitle": "Ügyfeleink értékelései",
+  "pageLead": "Valós visszajelzések eladóktól és vevőktől — precíz munka, átlátható kommunikáció, megbízható partnerség.",
+  "reviews": [
+    {
+      "id": "nikoletta",
+      "nev": "Nikoletta",
+      "szoveg": "Dániel segített nekem a pesti lakásom és garázsom eladásában. Észrevételei, tanácsai mind hozzásegítettek a mihamarabbi értékesítéshez, emellett szakértelmével az eladáshoz kötődő minden bürokráciával és ügyvédi nehézségekkel kapcsolatban felbecsülhetetlenül megkönnyítette az életem. Bátran ajánlom Dánielt, őszintesége és megbízhatósága sok terhet vett le a vállamról. Az ingatlanok eladása az idő- és árbeli céloknak megfelelően zajlott le.",
+      "csillag": 5,
+      "datum": "2026. május"
+    },
+    {
+      "id": "peter",
+      "nev": "Péter",
+      "szoveg": "Dani nagyon gyorsan reagált a megkeresésemre. Megbízható, pontos és precíz a munkájában. Rendkívül körültekintő. Olyan részletekre is felhívta a figyelmemet, amikre nem gondoltam. Remek fotókat készített az ingatlanról. Az eladás 1,5 hónapot vett igénybe.",
+      "csillag": 5,
+      "datum": "2026. április"
+    },
+    {
+      "id": "mihaly-andras",
+      "nev": "Mihály András",
+      "szoveg": "Nagyon korrekt és tisztességes hozzáállás. Ritka az ilyen ügyfélközpontú ingatlanközvetítő.",
+      "csillag": 5,
+      "datum": "2026. március"
+    },
+    {
+      "id": "christiana",
+      "nev": "Christiana",
+      "szoveg": "Professional, reliable, and extremely helpful throughout the entire process. I highly recommend working with them.",
+      "csillag": 5,
+      "datum": "2026. február"
+    },
+    {
+      "id": "olivia",
+      "nev": "Olivia",
+      "szoveg": "Ha valaki biztonságosan és jó kezekben szeretné eladni vagy megvenni az ingatlanát, jó szívvel ajánlom.",
+      "csillag": 5,
+      "datum": "2026. január"
+    },
+    {
+      "id": "kovacs-norbert",
+      "nev": "Kovács Norbert",
+      "szoveg": "Az ingatlanbemutatás, a fotók és a hirdetés is profi volt. Ennek köszönhetően hamar lett komoly érdeklődő.",
+      "csillag": 5,
+      "datum": "2025. december"
+    },
+    {
+      "id": "horvath-antal",
+      "nev": "Horváth Antal",
+      "szoveg": "Stresszmentessé tette a lakáseladást. Profi kommunikáció és maximális odafigyelés. Ajánlom!",
+      "csillag": 5,
+      "datum": "2025. november"
+    },
+    {
+      "id": "ibolya",
+      "nev": "Ibolya",
+      "szoveg": "Nagyon korrekt, pontos és felkészült szakember. Az ingatlanunk eladása a szomszédok miatt nem volt egyszerű, de a nehezített pálya sem gond Dánielnek.",
+      "csillag": 5,
+      "datum": "2025. október"
+    },
+    {
+      "id": "tamas",
+      "nev": "Tamás",
+      "szoveg": "Rendkívül segítőkész és megbízható ingatlanközvetítő. Gyorsan megtalálta a megfelelő vevőt, és az egész folyamatot végig profin kezelte.",
+      "csillag": 5,
+      "datum": "2025. szeptember"
+    },
+    {
+      "id": "andras",
+      "nev": "András",
+      "szoveg": "Hadd mondjam el, miután már temérdek házat megnéztünk, és sokakkal akadt dolgunk, hogy Ön a legfelkészültebb ingatlanos szakember, akivel összesodort az élet. Ennyi adatot és ilyen gyorsan egyetlen házról sem kaptunk még soha. Köszönjük szépen!",
+      "csillag": 5,
+      "datum": "2025. augusztus"
+    }
+  ]
+}

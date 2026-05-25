@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ügyfélvélemények — Principium Ingatlan Zrt.">
+  <title>Értékelések | Principium Ingatlan Zrt.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+</head>
+<body class="reviews-page">
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html#home" class="logo">Principium Ingatlan Zrt.</a>
+      <nav class="nav" aria-label="Fő navigáció">
+        <a href="../index.html#home">Kezdőlap</a>
+        <a href="../index.html#about">Bemutatkozás</a>
+        <a href="../index.html#results">Eredmények</a>
+        <a href="../cikkek/index.html">Hasznos tippek</a>
+        <a href="../FAQ/index.html">GYIK</a>
+        <a href="./index.html" aria-current="page">Értékelések</a>
+        <a href="../index.html#contact">Elérhetőség</a>
+      </nav>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü megnyitása">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav" hidden>
+      <a href="../index.html#home">Kezdőlap</a>
+      <a href="../index.html#about">Bemutatkozás</a>
+      <a href="../index.html#results">Eredmények</a>
+      <a href="../cikkek/index.html">Hasznos tippek</a>
+      <a href="../FAQ/index.html">GYIK</a>
+      <a href="./index.html" aria-current="page">Értékelések</a>
+      <a href="../index.html#contact">Elérhetőség</a>
+    </div>
+  </header>
+
+  <section class="reviews-hero parallax-section" aria-labelledby="reviews-title">
+    <div class="reviews-hero-bg parallax-bg" style="--bg-image: url('../images/bg_about.jpg');"></div>
+    <div class="reviews-hero-overlay"></div>
+    <div class="reviews-hero-content">
+      <p class="reviews-eyebrow">Principium — bizalom</p>
+      <h1 id="reviews-title" class="reviews-title"></h1>
+      <p id="reviews-lead" class="reviews-lead"></p>
+    </div>
+  </section>
+
+  <main class="reviews-main">
+    <div class="reviews-inner">
+      <div id="reviews-grid" class="reviews-grid" role="list"></div>
+      <p id="reviews-empty" class="reviews-empty" hidden>Jelenleg nincs megjeleníthető értékelés.</p>
+      <p id="reviews-error" class="reviews-error" hidden>Az értékelések betöltése nem sikerült. Használjon helyi szervert (pl. Live Server).</p>
+    </div>
+  </main>
+
+  <footer class="reviews-footer">
+    <a href="../index.html#home" class="btn-back">Vissza a főoldalra</a>
+    <p class="reviews-footer-copy">&copy; <span id="reviews-year"></span> Principium Ingatlan Zrt.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

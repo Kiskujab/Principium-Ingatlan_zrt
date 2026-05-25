@@ -142,23 +142,110 @@
     bindFooterMeta(data);
   }
 
+  function clampStars(value) {
+    var n = Math.round(Number(value));
+    if (isNaN(n) || n < 1) return 1;
+    if (n > 5) return 5;
+    return n;
+  }
+
+  function createStars(count) {
+    var wrap = document.createElement("div");
+    wrap.className = "review-stars";
+    wrap.setAttribute("aria-label", count + " csillag az 5-ből");
+
+    for (var i = 0; i < 5; i++) {
+      var star = document.createElement("span");
+      star.className = "review-star" + (i < count ? " review-star--filled" : "");
+      star.setAttribute("aria-hidden", "true");
+      star.textContent = "★";
+      wrap.appendChild(star);
+    }
+
+    return wrap;
+  }
+
+  function createPreviewCard(review, index) {
+    var card = document.createElement("article");
+    card.className = "review-card";
+    card.setAttribute("role", "listitem");
+    card.setAttribute("data-aos", "fade-up");
+    card.setAttribute("data-aos-delay", String(index * 100));
+
+    card.appendChild(createStars(clampStars(review.csillag)));
+
+    var quote = document.createElement("blockquote");
+    quote.className = "review-quote";
+    var p = document.createElement("p");
+    p.textContent = review.szoveg ? String(review.szoveg).trim() : "";
+    quote.appendChild(p);
+    card.appendChild(quote);
+
+    var footer = document.createElement("footer");
+    footer.className = "review-meta";
+
+    var name = document.createElement("cite");
+    name.className = "review-name";
+    name.textContent = review.nev ? String(review.nev).trim() : "";
+
+    var date = document.createElement("time");
+    date.className = "review-date";
+    date.textContent = review.datum ? String(review.datum).trim() : "";
+
+    footer.appendChild(name);
+    if (date.textContent) footer.appendChild(date);
+    card.appendChild(footer);
+
+    return card;
+  }
+
+  function renderTestimonialsPreview(reviews) {
+    var container = document.getElementById("testimonials-preview");
+    if (!container || !Array.isArray(reviews)) return;
+
+    container.textContent = "";
+    var preview = reviews.slice(0, 2);
+
+    preview.forEach(function (review, index) {
+      container.appendChild(createPreviewCard(review, index));
+    });
+  }
+
+  function loadReviews() {
+    return fetch("ertekelesek/reviews.json", { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("reviews.json");
+        return res.json();
+      })
+      .then(function (data) {
+        renderTestimonialsPreview(data.reviews);
+        refreshAOS();
+      })
+      .catch(function () {
+        console.warn("Principium: ertekelesek/reviews.json nem elérhető.");
+      });
+  }
+
   function load() {
     initYear();
     initNav();
     initAOS();
 
-    fetch("data.json", { cache: "no-store" })
+    var dataPromise = fetch("data.json", { cache: "no-store" })
       .then(function (res) {
         if (!res.ok) throw new Error("data.json betöltése sikertelen");
         return res.json();
       })
       .then(function (data) {
         applyData(data);
-        refreshAOS();
       })
       .catch(function () {
         console.warn("Principium: data.json nem elérhető (használjon helyi szervert, pl. npx serve vagy Live Server).");
       });
+
+    Promise.all([dataPromise, loadReviews()]).then(function () {
+      refreshAOS();
+    });
   }
 
   if (document.readyState === "loading") {
