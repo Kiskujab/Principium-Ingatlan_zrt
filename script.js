@@ -5,11 +5,36 @@
     document.querySelectorAll("[data-bind]").forEach(function (el) {
       var key = el.getAttribute("data-bind");
       if (!key || !(key in data)) return;
+      if (key === "social_facebook" || key === "social_linkedin") return;
       var value = data[key];
       if (value === null || value === undefined) value = "";
       if (el.tagName === "A" && (key === "telefon" || key === "email")) return;
       el.textContent = String(value).trim() || el.textContent;
     });
+  }
+
+  function normalizeSocialUrl(url) {
+    var v = String(url || "").trim();
+    if (!v || v.toUpperCase().indexOf("TÖLTSD") !== -1) return "";
+    if (v.indexOf("http://") === 0 || v.indexOf("https://") === 0) return v;
+    if (v.indexOf("www.") === 0) return "https://" + v;
+    return "";
+  }
+
+  function applySocialLink(element, url) {
+    if (!element) return;
+    var normalized = normalizeSocialUrl(url);
+    if (normalized) {
+      element.href = normalized;
+      element.removeAttribute("hidden");
+    } else {
+      element.setAttribute("hidden", "");
+    }
+  }
+
+  function bindSocialLinks(data) {
+    applySocialLink(document.getElementById("social-fb"), data.social_facebook);
+    applySocialLink(document.getElementById("social-li"), data.social_linkedin);
   }
 
   function setHref(el, prefix, value) {
@@ -29,7 +54,6 @@
 
   function bindLinks(data) {
     var phoneEl = document.getElementById("link-phone");
-    var emailEl = document.getElementById("link-email");
     if (phoneEl) {
       phoneEl.textContent = data.telefon || phoneEl.textContent;
       var tel = String(data.telefon || "").replace(/\s/g, "");
@@ -39,31 +63,8 @@
         phoneEl.setAttribute("href", "#contact");
       }
     }
-    if (emailEl) {
-      emailEl.textContent = data.email || emailEl.textContent;
-      setHref(emailEl, "mailto:", data.email);
-    }
 
-    var fb = document.getElementById("social-fb");
-    var li = document.getElementById("social-li");
-    var fbUrl = String(data.social_facebook || "").trim();
-    var liUrl = String(data.social_linkedin || "").trim();
-    if (fb) {
-      if (fbUrl) {
-        fb.removeAttribute("hidden");
-        fb.setAttribute("href", fbUrl);
-      } else {
-        fb.setAttribute("hidden", "");
-      }
-    }
-    if (li) {
-      if (liUrl) {
-        li.removeAttribute("hidden");
-        li.setAttribute("href", liUrl);
-      } else {
-        li.setAttribute("hidden", "");
-      }
-    }
+    bindSocialLinks(data);
   }
 
   function bindLeaderImage(data) {

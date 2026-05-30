@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="../footer-shared.css">
 </head>
 <body class="faq-page">
   <header class="site-header">
@@ -54,11 +56,30 @@
   </main>
 
   <footer class="faq-footer">
+    <div class="footer-contact">
+      <h2 class="footer-heading">Elérhetőségek</h2>
+      <ul class="contact-list">
+        <li><span class="label">Telefon</span> <a href="#" class="contact-link" id="link-phone" data-bind="telefon"></a></li>
+      </ul>
+      <ul class="footer-meta" id="footer-meta">
+        <li data-meta="adoszam"></li>
+        <li data-meta="cegjegyzekszam"></li>
+      </ul>
+      <div class="social-row" id="social-row">
+        <a href="#" class="social-link" id="social-fb" data-bind="social_facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook" hidden>
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </a>
+        <a href="#" class="social-link" id="social-li" data-bind="social_linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" hidden>
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
     <a href="../index.html#home" class="btn-back">Vissza a főoldalra</a>
     <p class="faq-footer-copy">&copy; <span id="faq-year"></span> Principium Ingatlan Zrt.</p>
   </footer>
 
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="script.js"></script>
+  <script src="../footer-bind.js" data-json="../data.json"></script>
 </body>
 </html>
