@@ -4,33 +4,33 @@
   "items": [
     {
       "category": "Értékbecslés és árazás",
-      "question": "Mennyibe kerül egy szakértői értékbecslés?",
-      "answer": "Az ingatlan típusától, méretétől és a dokumentáció mértékétől függ. Rövid telefonos vagy e-mailes egyeztetés után személyre szabott ajánlatot adunk — kötelezettség nélkül."
+      "question": "Mennyibe kerül a helyszíni szemlés szakértői értékmeghatározás?",
+      "answer": "Amennyiben Ön az ingatlan értékesítését tervezi, a személyes megtekintés és az írásos szakvélemény - szabad kapacitásaink erejéig - díjmentes. Ez nem olyan részletes, mint egy banki értékbecslés, de jól tükrözi a piaci helyzetet a konkrét ingatlan vonatkozásában."
     },
     {
       "category": "Értékbecslés és árazás",
-      "question": "Mennyi idő alatt készül el a becslés?",
-      "answer": "Egyszerűbb lakásoknál általában 2–5 munkanap, összetettebb ingatlanoknál vagy hiányzó dokumentáció esetén ennél hosszabb is lehet. Az egyeztetéskor pontos határidőt adunk."
+      "question": "Mennyi idő alatt készül el az írásos szakvélemény?",
+      "answer": "Társasházi lakásoknál és jó állapotú családi házalnál általában egy hét alatt. Felújítandó családi házak és többcélúan hasznosítható ingatlanok vagy hiányzó dokumentáció esetén ennél hosszabb is lehet."
     },
     {
       "category": "Értékesítés",
-      "question": "Milyen dokumentumokra van szükség az eladáshoz?",
-      "answer": "Tipikusan tulajdoni lap, energetikai tanúsítvány (ha kötelező), közös képviselői jóváhagyás társasháznál, valamint az adásvételi szerződéshez szükséges egyéb iratok. Segítünk összeállítani a listát az Ön ingatlanához."
+      "question": "Mik az értékesítési folyamat főbb fázisai?",
+      "answer": "1, A megbízás: a megbízási szerződés tervezetét közösen átnézzük és megbeszéljük a kérdéses pontokat. 2, Az ingatlan felkészítése: javaslatokat teszünk, hogy lehet az ingatlanból a lehetőségekhez mérten a legtöbbet kihozni. Egy alapos rendrakás és takarítás a legtöbb ingatlanra ráfér fotózás előtt. Igény esetén home staging szemléletű javaslatokkal szolgálunk az ingatlan felkészítése során. 3, Fotózás: Minden helyiséget a személyes tárgyak eltávolítása után fotózunk le, szinte olyan lesz, mintha nem lakna ott épp senki. Az ide-oda pakolásban segítünk. 4, Meghirdetés és az érdeklődők fogadása: folyamatosan zajlik, előre egyeztetett módon: a tulajdonossal közösen vagy önállóan mutatjuk be az ingatlant. Ebben a fázisban célszerű már elkészíttetni a lakóingatlanokra kötelező energetikai tanúsítványt és a villamos biztonsági felülvizsgálatot. 5, Az alku: végigkísérjük ügyfeleinket a alkudozás érzelmileg megterhelő folyamatán, amíg megszületik a végő, írásba foglalt adásvételi szerződés. 6, Utókövetés: igény esetén segítünk a birtokbaadás, a közös képviselői nyilatkozat beszerzése és más kapcsolódó témakörökben is. "
     },
     {
       "category": "Értékesítés",
       "question": "Mennyi ideig tart átlagosan egy eladás Budapesten?",
-      "answer": "Az árazástól, az ingatlan állapotától és a lokációtól függ. Reálisan árazott, jól bemutatott ingatlannál gyakran 4–12 hét a tipikus tartomány — de minden eset egyedi."
+      "answer": "Ha az ingatlan túl gyorsan talál gazdára, akkor a Megbízó úgy érzi, hogy többet is kaphatott volna érte. Az értékesítési idő reálisan árazott társasházi lakásoknál minimum 2-3 hónap. Családi házaknál inkább 6-12 hónapot javaslunk rászánni a folyamatra. Természetesen vannak piaci időszakok, pl. határidővel igénybevehető állami támogatások időszakában, amikor gyorsabban gazdára talál egy ingatlan és olyan is van, hogy a vevők éppen kivárnak."
     },
     {
       "category": "Együttműködés",
       "question": "Milyen területeken dolgoznak?",
-      "answer": "Elsősorban Budapesten és agglomerációban, de egyedi megbízások esetén más régiókban is egyeztetünk. Írjon vagy hívjon, és megmondjuk, tudunk-e segíteni."
+      "answer": "Jelenleg elsősorban a pesti kerületekben és egyedi mérlegelés alapján Budán, vagy az agglomerációban."
     },
     {
       "category": "Együttműködés",
       "question": "Hogyan lehet felvenni a kapcsolatot?",
-      "answer": "Telefonon, e-mailben vagy az alábbi elérhetőségeken. Az első konzultáció általában rövid, célzott — meghallgatjuk az igényét, és javaslatot teszünk a következő lépésekre."
+      "answer": "Telefonon, e-mailben vagy az alábbi elérhetőségeken. Meghallgatjuk az igényét, és javaslatot teszünk a következő lépésekre."
     }
   ]
 }

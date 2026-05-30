@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  var SCRIPT_EL = document.currentScript;
+
   function normalizeSocialUrl(url) {
     var v = String(url || "").trim();
     if (!v || v.toUpperCase().indexOf("TÖLTSD") !== -1) return "";
@@ -38,24 +40,10 @@
     }
 
     bindSocialLinks(data);
-
-    document.querySelectorAll("#footer-meta [data-meta]").forEach(function (el) {
-      var key = el.getAttribute("data-meta");
-      var val = data[key];
-      if (!val || !String(val).trim() || String(val).trim().toUpperCase().indexOf("TÖLTSD") !== -1) {
-        el.textContent = "";
-        el.style.display = "none";
-      } else {
-        el.style.display = "";
-        var label = key === "adoszam" ? "Adószám: " : "Cégjegyzékszám: ";
-        el.textContent = label + String(val).trim();
-      }
-    });
   }
 
   function load() {
-    var script = document.currentScript;
-    var jsonPath = (script && script.getAttribute("data-json")) || "data.json";
+    var jsonPath = (SCRIPT_EL && SCRIPT_EL.getAttribute("data-json")) || "data.json";
 
     fetch(jsonPath, { cache: "no-store" })
       .then(function (res) {

@@ -74,21 +74,6 @@
     img.setAttribute("alt", name ? name + " portré" : "Ügyvezető portré");
   }
 
-  function bindFooterMeta(data) {
-    document.querySelectorAll("#footer-meta [data-meta]").forEach(function (el) {
-      var key = el.getAttribute("data-meta");
-      var val = data[key];
-      if (!val || !String(val).trim()) {
-        el.textContent = "";
-        el.style.display = "none";
-      } else {
-        el.style.display = "";
-        var label = key === "adoszam" ? "Adószám: " : "Cégjegyzékszám: ";
-        el.textContent = label + String(val).trim();
-      }
-    });
-  }
-
   function initNav() {
     var toggle = document.querySelector(".nav-toggle");
     var mobile = document.getElementById("mobile-nav");
@@ -140,7 +125,6 @@
     bindText(data);
     bindLinks(data);
     bindLeaderImage(data);
-    bindFooterMeta(data);
   }
 
   function clampStars(value) {
@@ -227,10 +211,50 @@
       });
   }
 
+  function initContactForm() {
+    var form = document.getElementById("contact-form");
+    if (!form || typeof emailjs === "undefined") return;
+
+    emailjs.init("7Is8dAkttewLAIWzc");
+
+    var submitBtn = document.getElementById("cf-submit");
+    var submitText = form.querySelector(".form-submit-text");
+    var submitSpinner = form.querySelector(".form-submit-spinner");
+    var statusEl = document.getElementById("cf-status");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      submitText.textContent = "Küldés...";
+      submitSpinner.hidden = false;
+      statusEl.hidden = true;
+      statusEl.className = "form-status";
+
+      emailjs.sendForm("service_h5de4ur", "template_2wvk89l", form)
+        .then(function () {
+          statusEl.textContent = "Üzenetét sikeresen elküldtük! Hamarosan felvesszük Önnel a kapcsolatot.";
+          statusEl.hidden = false;
+          form.reset();
+        })
+        .catch(function () {
+          statusEl.textContent = "Sajnos az üzenet küldése nem sikerült. Kérjük, próbálja újra, vagy hívjon minket telefonon.";
+          statusEl.className = "form-status form-status--error";
+          statusEl.hidden = false;
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitText.textContent = "Üzenet küldése";
+          submitSpinner.hidden = true;
+        });
+    });
+  }
+
   function load() {
     initYear();
     initNav();
     initAOS();
+    initContactForm();
 
     var dataPromise = fetch("data.json", { cache: "no-store" })
       .then(function (res) {

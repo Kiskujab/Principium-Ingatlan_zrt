@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="footer-shared.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -110,9 +111,43 @@
         </div>
       </div>
     </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="section-inner">
+        <div class="contact-wrap">
+          <div class="contact-intro" data-aos="fade-right">
+            <h2 class="section-title">Írjon nekünk</h2>
+            <p class="contact-lead">Kérdése van ingatlanvásárlással, értékesítéssel kapcsolatban? Keressen minket bizalommal — kollégánk hamarosan felveszi Önnel a kapcsolatot.</p>
+          </div>
+          <form id="contact-form" class="contact-form" novalidate data-aos="fade-left" data-aos-delay="100">
+            <div class="form-group">
+              <label for="cf-name" class="form-label">Teljes neve <span aria-hidden="true">*</span></label>
+              <input type="text" id="cf-name" name="from_name" class="form-input" required autocomplete="name" placeholder="Kovács János">
+            </div>
+            <div class="form-group">
+              <label for="cf-email" class="form-label">E-mail címe <span aria-hidden="true">*</span></label>
+              <input type="email" id="cf-email" name="from_email" class="form-input" required autocomplete="email" placeholder="pelda@email.hu">
+            </div>
+            <div class="form-group">
+              <label for="cf-phone" class="form-label">Telefonszám</label>
+              <input type="tel" id="cf-phone" name="phone" class="form-input" autocomplete="tel" placeholder="+36 30 123 4567">
+            </div>
+            <div class="form-group">
+              <label for="cf-message" class="form-label">Üzenete <span aria-hidden="true">*</span></label>
+              <textarea id="cf-message" name="message" class="form-input form-textarea" required rows="5" placeholder="Írja meg kérdését vagy üzenetét..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit" id="cf-submit">
+              <span class="form-submit-text">Üzenet küldése</span>
+              <span class="form-submit-spinner" hidden aria-hidden="true"></span>
+            </button>
+            <p class="form-status" id="cf-status" role="status" hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer id="contact" class="site-footer">
+  <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
         <p class="footer-logo" data-bind="ceg_neve">Principium Ingatlan Zrt.</p>
@@ -130,10 +165,6 @@
         <h2 class="footer-heading">Elérhetőségek</h2>
         <ul class="contact-list">
           <li><span class="label">Telefon</span> <a href="#" class="contact-link" id="link-phone" data-bind="telefon"></a></li>
-        </ul>
-        <ul class="footer-meta" id="footer-meta">
-          <li data-meta="adoszam"></li>
-          <li data-meta="cegjegyzekszam"></li>
         </ul>
         <div class="social-row" id="social-row">
           <a href="#" class="social-link" id="social-fb" target="_blank" rel="noopener noreferrer" aria-label="Facebook" hidden>
