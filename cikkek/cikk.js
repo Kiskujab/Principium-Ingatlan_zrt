@@ -92,25 +92,11 @@
     }
   }
 
-  function applyCtaEmail(data) {
+  function revealCta() {
+    // A CTA gomb statikus horgony-link a főoldali kapcsolatfelvételi űrlaphoz (cikk.html),
+    // itt már csak megjelenítjük a kártyát.
     var cta = document.getElementById("article-cta");
-    var link = document.getElementById("cta-email-link");
-    if (!cta || !link) return;
-
-    var email = data && data.email ? String(data.email).trim() : "";
-    if (email) {
-      link.textContent = email;
-      link.setAttribute(
-        "href",
-        email.indexOf("mailto:") === 0 ? email : "mailto:" + email
-      );
-      link.removeAttribute("aria-disabled");
-    } else {
-      link.textContent = "E-mail cím kitöltése";
-      link.setAttribute("href", "#");
-      link.setAttribute("aria-disabled", "true");
-    }
-    cta.hidden = false;
+    if (cta) cta.hidden = false;
   }
 
   function showError(message) {
@@ -147,15 +133,8 @@
       return;
     }
 
-    Promise.all([
-      P.fetchJSON("articles.json"),
-      P.fetchJSON("../data.json").catch(function () {
-        return {};
-      })
-    ])
-      .then(function (results) {
-        var data = results[0];
-        var siteData = results[1] || {};
+    P.fetchJSON("articles.json")
+      .then(function (data) {
         var article = findArticle(data.articles, id);
 
         if (!article) {
@@ -165,7 +144,7 @@
         }
 
         applyArticle(article);
-        applyCtaEmail(siteData);
+        revealCta();
         P.refreshAOS();
       })
       .catch(function () {
