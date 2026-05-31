@@ -1,53 +1,7 @@
 (function () {
   "use strict";
 
-  function initNav() {
-    var toggle = document.querySelector(".nav-toggle");
-    var mobile = document.getElementById("mobile-nav");
-    if (!toggle || !mobile) return;
-
-    toggle.addEventListener("click", function () {
-      var open = mobile.hasAttribute("hidden");
-      if (open) {
-        mobile.removeAttribute("hidden");
-        toggle.setAttribute("aria-expanded", "true");
-      } else {
-        mobile.setAttribute("hidden", "");
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
-
-    mobile.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        mobile.setAttribute("hidden", "");
-        toggle.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
-
-  function initYear() {
-    var y = document.getElementById("hub-year");
-    if (y) y.textContent = String(new Date().getFullYear());
-  }
-
-  function initAOS() {
-    if (typeof AOS === "undefined") return;
-    var reduceMotion =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    AOS.init({
-      once: true,
-      duration: 700,
-      offset: 48,
-      disable: reduceMotion
-    });
-  }
-
-  function refreshAOS() {
-    if (typeof AOS !== "undefined" && typeof AOS.refresh === "function") {
-      AOS.refresh();
-    }
-  }
+  var P = window.Principium;
 
   function applyPageMeta(data) {
     var titleEl = document.getElementById("hub-title");
@@ -148,23 +102,19 @@
   }
 
   function load() {
-    initYear();
-    initNav();
-    initAOS();
+    P.setYear("hub-year");
+    P.initNav();
+    P.initAOS({ offset: 48 });
 
-    fetch("articles.json", { cache: "no-store" })
-      .then(function (res) {
-        if (!res.ok) throw new Error("articles.json");
-        return res.json();
-      })
+    P.fetchJSON("articles.json")
       .then(function (data) {
         applyPageMeta(data);
         renderArticles(data.articles);
-        refreshAOS();
+        P.refreshAOS();
       })
       .catch(function () {
         showError();
-        refreshAOS();
+        P.refreshAOS();
       });
   }
 

@@ -1,28 +1,7 @@
 (function () {
   "use strict";
 
-  function clampStars(value) {
-    var n = Math.round(Number(value));
-    if (isNaN(n) || n < 1) return 1;
-    if (n > 5) return 5;
-    return n;
-  }
-
-  function createStars(count) {
-    var wrap = document.createElement("div");
-    wrap.className = "review-stars";
-    wrap.setAttribute("aria-label", count + " csillag az 5-ből");
-
-    for (var i = 0; i < 5; i++) {
-      var star = document.createElement("span");
-      star.className = "review-star" + (i < count ? " review-star--filled" : "");
-      star.setAttribute("aria-hidden", "true");
-      star.textContent = "★";
-      wrap.appendChild(star);
-    }
-
-    return wrap;
-  }
+  var P = window.Principium;
 
   function createReviewCard(review, index) {
     var card = document.createElement("article");
@@ -35,8 +14,8 @@
       card.setAttribute("data-review-id", String(review.id));
     }
 
-    var stars = clampStars(review.csillag);
-    card.appendChild(createStars(stars));
+    var stars = P.clampStars(review.csillag);
+    card.appendChild(P.createStars(stars));
 
     var quote = document.createElement("blockquote");
     quote.className = "review-quote";
@@ -61,54 +40,6 @@
     card.appendChild(footer);
 
     return card;
-  }
-
-  function initNav() {
-    var toggle = document.querySelector(".nav-toggle");
-    var mobile = document.getElementById("mobile-nav");
-    if (!toggle || !mobile) return;
-
-    toggle.addEventListener("click", function () {
-      var open = mobile.hasAttribute("hidden");
-      if (open) {
-        mobile.removeAttribute("hidden");
-        toggle.setAttribute("aria-expanded", "true");
-      } else {
-        mobile.setAttribute("hidden", "");
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
-
-    mobile.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        mobile.setAttribute("hidden", "");
-        toggle.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
-
-  function initYear() {
-    var y = document.getElementById("reviews-year");
-    if (y) y.textContent = String(new Date().getFullYear());
-  }
-
-  function initAOS() {
-    if (typeof AOS === "undefined") return;
-    var reduceMotion =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    AOS.init({
-      once: true,
-      duration: 700,
-      offset: 48,
-      disable: reduceMotion
-    });
-  }
-
-  function refreshAOS() {
-    if (typeof AOS !== "undefined" && typeof AOS.refresh === "function") {
-      AOS.refresh();
-    }
   }
 
   function applyPageMeta(data) {
@@ -161,23 +92,19 @@
   }
 
   function load() {
-    initYear();
-    initNav();
-    initAOS();
+    P.setYear("reviews-year");
+    P.initNav();
+    P.initAOS({ offset: 48 });
 
-    fetch("reviews.json", { cache: "no-store" })
-      .then(function (res) {
-        if (!res.ok) throw new Error("reviews.json");
-        return res.json();
-      })
+    P.fetchJSON("reviews.json")
       .then(function (data) {
         applyPageMeta(data);
         renderReviews(data.reviews);
-        refreshAOS();
+        P.refreshAOS();
       })
       .catch(function () {
         showError();
-        refreshAOS();
+        P.refreshAOS();
       });
   }
 

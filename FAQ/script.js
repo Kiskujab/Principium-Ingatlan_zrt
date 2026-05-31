@@ -1,6 +1,7 @@
 (function () {
   "use strict";
 
+  var P = window.Principium;
   var uidCounter = 0;
 
   function nextId(prefix) {
@@ -11,57 +12,9 @@
   function slugify(text) {
     return String(text)
       .toLowerCase()
-      .replace(/[^a-z0-9\u00C0-\u024F]+/gi, "-")
+      .replace(/[^a-z0-9À-ɏ]+/gi, "-")
       .replace(/^-|-$/g, "")
       .slice(0, 48) || "item";
-  }
-
-  function initNav() {
-    var toggle = document.querySelector(".nav-toggle");
-    var mobile = document.getElementById("mobile-nav");
-    if (!toggle || !mobile) return;
-
-    toggle.addEventListener("click", function () {
-      var open = mobile.hasAttribute("hidden");
-      if (open) {
-        mobile.removeAttribute("hidden");
-        toggle.setAttribute("aria-expanded", "true");
-      } else {
-        mobile.setAttribute("hidden", "");
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
-
-    mobile.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        mobile.setAttribute("hidden", "");
-        toggle.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
-
-  function initYear() {
-    var y = document.getElementById("faq-year");
-    if (y) y.textContent = String(new Date().getFullYear());
-  }
-
-  function initAOS() {
-    if (typeof AOS === "undefined") return;
-    var reduceMotion =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    AOS.init({
-      once: true,
-      duration: 700,
-      offset: 48,
-      disable: reduceMotion
-    });
-  }
-
-  function refreshAOS() {
-    if (typeof AOS !== "undefined" && typeof AOS.refresh === "function") {
-      AOS.refresh();
-    }
   }
 
   function applyPageMeta(data) {
@@ -250,23 +203,19 @@
   }
 
   function load() {
-    initYear();
-    initNav();
-    initAOS();
+    P.setYear("faq-year");
+    P.initNav();
+    P.initAOS({ offset: 48 });
 
-    fetch("faq.json", { cache: "no-store" })
-      .then(function (res) {
-        if (!res.ok) throw new Error("faq.json");
-        return res.json();
-      })
+    P.fetchJSON("faq.json")
       .then(function (data) {
         applyPageMeta(data);
         renderFaq(data.items);
-        refreshAOS();
+        P.refreshAOS();
       })
       .catch(function () {
         showError();
-        refreshAOS();
+        P.refreshAOS();
       });
   }
 

@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  var P = window.Principium;
+
   function getArticleId() {
     var params = new URLSearchParams(window.location.search);
     return params.get("id") ? String(params.get("id")).trim() : "";
@@ -10,25 +12,6 @@
     var s = String(text).trim();
     if (s.charAt(0) !== "#") return null;
     return s.slice(1).trim();
-  }
-
-  function initAOS() {
-    if (typeof AOS === "undefined") return;
-    var reduceMotion =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    AOS.init({
-      once: true,
-      duration: 700,
-      offset: 40,
-      disable: reduceMotion
-    });
-  }
-
-  function refreshAOS() {
-    if (typeof AOS !== "undefined" && typeof AOS.refresh === "function") {
-      AOS.refresh();
-    }
   }
 
   function renderContent(items, container) {
@@ -153,35 +136,22 @@
     return null;
   }
 
-  function initYear() {
-    var y = document.getElementById("article-year");
-    if (y) y.textContent = String(new Date().getFullYear());
-  }
-
   function load() {
-    initYear();
-    initAOS();
+    P.setYear("article-year");
+    P.initAOS({ offset: 40 });
 
     var id = getArticleId();
     if (!id) {
       showError("Nincs megadva cikk azonosító. Használja a cikkek listáját.");
-      refreshAOS();
+      P.refreshAOS();
       return;
     }
 
     Promise.all([
-      fetch("articles.json", { cache: "no-store" }).then(function (res) {
-        if (!res.ok) throw new Error("articles.json");
-        return res.json();
-      }),
-      fetch("../data.json", { cache: "no-store" })
-        .then(function (res) {
-          if (!res.ok) return {};
-          return res.json();
-        })
-        .catch(function () {
-          return {};
-        })
+      P.fetchJSON("articles.json"),
+      P.fetchJSON("../data.json").catch(function () {
+        return {};
+      })
     ])
       .then(function (results) {
         var data = results[0];
@@ -190,19 +160,19 @@
 
         if (!article) {
           showError("A kért cikk („" + id + "”) nem található az articles.json fájlban.");
-          refreshAOS();
+          P.refreshAOS();
           return;
         }
 
         applyArticle(article);
         applyCtaEmail(siteData);
-        refreshAOS();
+        P.refreshAOS();
       })
       .catch(function () {
         showError(
           "A cikk betöltése nem sikerült. Nyissa meg az oldalt helyi szerverről (pl. python3 -m http.server)."
         );
-        refreshAOS();
+        P.refreshAOS();
       });
   }
 

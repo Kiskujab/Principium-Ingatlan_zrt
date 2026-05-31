@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  var P = window.Principium;
+
   function bindText(data) {
     document.querySelectorAll("[data-bind]").forEach(function (el) {
       var key = el.getAttribute("data-bind");
@@ -13,45 +15,6 @@
     });
   }
 
-  function normalizeSocialUrl(url) {
-    var v = String(url || "").trim();
-    if (!v || v.toUpperCase().indexOf("TÖLTSD") !== -1) return "";
-    if (v.indexOf("http://") === 0 || v.indexOf("https://") === 0) return v;
-    if (v.indexOf("www.") === 0) return "https://" + v;
-    return "";
-  }
-
-  function applySocialLink(element, url) {
-    if (!element) return;
-    var normalized = normalizeSocialUrl(url);
-    if (normalized) {
-      element.href = normalized;
-      element.removeAttribute("hidden");
-    } else {
-      element.setAttribute("hidden", "");
-    }
-  }
-
-  function bindSocialLinks(data) {
-    applySocialLink(document.getElementById("social-fb"), data.social_facebook);
-    applySocialLink(document.getElementById("social-li"), data.social_linkedin);
-  }
-
-  function bindLinks(data) {
-    var phoneEl = document.getElementById("link-phone");
-    if (phoneEl) {
-      phoneEl.textContent = data.telefon || phoneEl.textContent;
-      var tel = String(data.telefon || "").replace(/\s/g, "");
-      if (tel && tel.indexOf("_") === -1) {
-        phoneEl.setAttribute("href", "tel:" + tel.replace(/[^\d+]/g, ""));
-      } else {
-        phoneEl.setAttribute("href", "#contact");
-      }
-    }
-
-    bindSocialLinks(data);
-  }
-
   function bindLeaderImage(data) {
     var img = document.getElementById("leader-img");
     if (!img) return;
@@ -59,80 +22,10 @@
     img.setAttribute("alt", name ? name + " portré" : "Ügyvezető portré");
   }
 
-  function initNav() {
-    var toggle = document.querySelector(".nav-toggle");
-    var mobile = document.getElementById("mobile-nav");
-    if (!toggle || !mobile) return;
-
-    toggle.addEventListener("click", function () {
-      var open = mobile.hasAttribute("hidden");
-      if (open) {
-        mobile.removeAttribute("hidden");
-        toggle.setAttribute("aria-expanded", "true");
-      } else {
-        mobile.setAttribute("hidden", "");
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
-
-    mobile.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        mobile.setAttribute("hidden", "");
-        toggle.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
-
-  function initYear() {
-    var y = document.getElementById("year");
-    if (y) y.textContent = String(new Date().getFullYear());
-  }
-
-  function initAOS() {
-    if (typeof AOS === "undefined") return;
-    var reduceMotion =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    AOS.init({
-      once: true,
-      duration: 800,
-      disable: reduceMotion
-    });
-  }
-
-  function refreshAOS() {
-    if (typeof AOS !== "undefined" && typeof AOS.refresh === "function") {
-      AOS.refresh();
-    }
-  }
-
   function applyData(data) {
     bindText(data);
-    bindLinks(data);
+    P.bindFooterContact(data);
     bindLeaderImage(data);
-  }
-
-  function clampStars(value) {
-    var n = Math.round(Number(value));
-    if (isNaN(n) || n < 1) return 1;
-    if (n > 5) return 5;
-    return n;
-  }
-
-  function createStars(count) {
-    var wrap = document.createElement("div");
-    wrap.className = "review-stars";
-    wrap.setAttribute("aria-label", count + " csillag az 5-ből");
-
-    for (var i = 0; i < 5; i++) {
-      var star = document.createElement("span");
-      star.className = "review-star" + (i < count ? " review-star--filled" : "");
-      star.setAttribute("aria-hidden", "true");
-      star.textContent = "★";
-      wrap.appendChild(star);
-    }
-
-    return wrap;
   }
 
   function createPreviewCard(review, index) {
@@ -142,7 +35,7 @@
     card.setAttribute("data-aos", "fade-up");
     card.setAttribute("data-aos-delay", String(index * 100));
 
-    card.appendChild(createStars(clampStars(review.csillag)));
+    card.appendChild(P.createStars(P.clampStars(review.csillag)));
 
     var quote = document.createElement("blockquote");
     quote.className = "review-quote";
@@ -182,14 +75,10 @@
   }
 
   function loadReviews() {
-    return fetch("ertekelesek/reviews.json", { cache: "no-store" })
-      .then(function (res) {
-        if (!res.ok) throw new Error("reviews.json");
-        return res.json();
-      })
+    return P.fetchJSON("ertekelesek/reviews.json")
       .then(function (data) {
         renderTestimonialsPreview(data.reviews);
-        refreshAOS();
+        P.refreshAOS();
       })
       .catch(function () {
         console.warn("Principium: ertekelesek/reviews.json nem elérhető.");
@@ -247,25 +136,19 @@
   }
 
   function load() {
-    initYear();
-    initNav();
-    initAOS();
+    P.setYear("year");
+    P.initNav();
+    P.initAOS({ duration: 800 });
     initContactForm();
 
-    var dataPromise = fetch("data.json", { cache: "no-store" })
-      .then(function (res) {
-        if (!res.ok) throw new Error("data.json betöltése sikertelen");
-        return res.json();
-      })
-      .then(function (data) {
-        applyData(data);
-      })
+    var dataPromise = P.fetchJSON("data.json")
+      .then(applyData)
       .catch(function () {
         console.warn("Principium: data.json nem elérhető (használjon helyi szervert, pl. npx serve vagy Live Server).");
       });
 
     Promise.all([dataPromise, loadReviews()]).then(function () {
-      refreshAOS();
+      P.refreshAOS();
     });
   }
 
