@@ -149,7 +149,25 @@
 
     Promise.all([dataPromise, loadReviews()]).then(function () {
       P.refreshAOS();
+      // Kereszt-oldalas horgony (pl. cikkből ../index.html#contact): a vélemények
+      // aszinkron betöltése eltolja a layoutot, ezért a tartalom kész állapotában
+      // újra a célra görgetünk, hogy pontosan az "Írjon nekünk" résznél álljunk meg.
+      scrollToHashTarget();
     });
+  }
+
+  function scrollToHashTarget() {
+    var hash = window.location.hash;
+    if (!hash || hash.length < 2) return;
+    var target = document.getElementById(hash.slice(1));
+    if (target) {
+      // Két frame késleltetés: biztosan a renderelt layouthoz igazodjon
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          target.scrollIntoView();
+        });
+      });
+    }
   }
 
   if (document.readyState === "loading") {
