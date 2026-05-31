@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Logok
+*.log
+
+# Node
+node_modules/
+
+# Szerkesztők
+.vscode/
+.idea/

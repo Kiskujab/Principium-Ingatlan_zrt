@@ -37,21 +37,6 @@
     applySocialLink(document.getElementById("social-li"), data.social_linkedin);
   }
 
-  function setHref(el, prefix, value) {
-    if (!el) return;
-    var v = String(value || "").trim();
-    if (!v) return;
-    if (v.indexOf("mailto:") === 0 || v.indexOf("tel:") === 0 || v.indexOf("http") === 0) {
-      el.setAttribute("href", v);
-      return;
-    }
-    if (prefix === "mailto:") {
-      el.setAttribute("href", "mailto:" + v);
-      return;
-    }
-    el.setAttribute("href", prefix + v.replace(/\s/g, ""));
-  }
-
   function bindLinks(data) {
     var phoneEl = document.getElementById("link-phone");
     if (phoneEl) {
