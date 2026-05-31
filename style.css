@@ -879,6 +879,7 @@ img {
 
 /* ── Contact Form Section ─────────────────────────────── */
 .contact-section {
+  scroll-margin-top: var(--header-h);
   background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 100%);
   border-top: 1px solid rgba(201, 162, 39, 0.12);
 }
