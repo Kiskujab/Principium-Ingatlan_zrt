@@ -120,6 +120,11 @@
             <p class="contact-lead">Kérdése van ingatlanvásárlással, értékesítéssel kapcsolatban? Keressen minket bizalommal — kollégánk hamarosan felveszi Önnel a kapcsolatot.</p>
           </div>
           <form id="contact-form" class="contact-form" novalidate data-aos="fade-left" data-aos-delay="100">
+            <!-- Honeypot: emberek nem látják, botok kitöltik. Ne töltse ki! -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="cf-company">Cég weboldala (ne töltse ki)</label>
+              <input type="text" id="cf-company" name="company_website" tabindex="-1" autocomplete="off">
+            </div>
             <div class="form-group">
               <label for="cf-name" class="form-label">Teljes neve <span aria-hidden="true">*</span></label>
               <input type="text" id="cf-name" name="from_name" class="form-input" required autocomplete="name" placeholder="Kovács János">

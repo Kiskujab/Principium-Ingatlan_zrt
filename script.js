@@ -210,6 +210,16 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
+      // Honeypot: ha a rejtett mező ki van töltve, valószínűleg bot — csendben eldobjuk
+      var honeypot = form.elements["company_website"];
+      if (honeypot && honeypot.value.trim() !== "") {
+        return;
+      }
+
+      // Throttle: amíg egy küldés folyamatban van, ne induljon újabb (dupla kattintás ellen)
+      if (form.dataset.sending === "1") return;
+      form.dataset.sending = "1";
+
       submitBtn.disabled = true;
       submitText.textContent = "Küldés...";
       submitSpinner.hidden = false;
@@ -228,6 +238,7 @@
           statusEl.hidden = false;
         })
         .finally(function () {
+          form.dataset.sending = "0";
           submitBtn.disabled = false;
           submitText.textContent = "Üzenet küldése";
           submitSpinner.hidden = true;

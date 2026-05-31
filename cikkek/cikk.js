@@ -66,7 +66,9 @@
       (article.headerKep && String(article.headerKep).trim()) ||
       (article.kep && String(article.kep).trim()) ||
       "../images/bg_about.jpg";
-    bg.style.backgroundImage = "url('" + src + "')";
+    // encodeURI + idézőjel-kódolás: megakadályozza a CSS url()-ből való kitörést (injekció)
+    var safeSrc = encodeURI(src).replace(/"/g, "%22");
+    bg.style.backgroundImage = 'url("' + safeSrc + '")';
   }
 
   function applyArticle(article) {

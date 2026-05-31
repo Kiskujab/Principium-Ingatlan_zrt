@@ -883,6 +883,16 @@ img {
   gap: 0.4rem;
 }
 
+/* Honeypot mező: vizuálisan és képernyőolvasó elől is elrejtve, de a botok kitöltik */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .form-label {
   font-size: 0.7rem;
   letter-spacing: 0.14em;
