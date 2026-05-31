@@ -11,7 +11,7 @@
   --muted: rgba(250, 251, 252, 0.72);
   --font-sans: "Montserrat", system-ui, sans-serif;
   --font-serif: "Playfair Display", Georgia, serif;
-  --header-h: 4.25rem;
+  --header-h: 70px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -45,6 +45,8 @@ a {
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  height: var(--header-h);
   z-index: 100;
   background: linear-gradient(180deg, rgba(10, 22, 40, 0.95) 0%, rgba(10, 22, 40, 0.65) 70%, transparent 100%);
   backdrop-filter: blur(8px);
@@ -52,9 +54,11 @@ a {
 }
 
 .header-inner {
+  width: 100%;
   max-width: 1200px;
+  height: 100%;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -98,6 +102,7 @@ a {
   display: none;
   flex-direction: column;
   gap: 5px;
+  margin-left: auto;
   background: none;
   border: none;
   cursor: pointer;
@@ -109,15 +114,26 @@ a {
   width: 22px;
   height: 2px;
   background: var(--gold-400);
+  transition: transform 0.25s ease, opacity 0.2s ease;
 }
 
 .mobile-nav {
   display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 200;
   flex-direction: column;
-  padding: 0 1.5rem 1.25rem;
+  padding: 0.75rem 1.5rem 1.25rem;
   gap: 0.75rem;
-  background: rgba(10, 22, 40, 0.98);
+  /* Tömör háttér: iOS Safari áttetszőség/újrarajzolás-bug elkerülése fixed + backdrop-filter mellett */
+  background: #0a1628;
   border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.4);
+  max-height: calc(100vh - 100%);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-nav a {
@@ -125,10 +141,24 @@ a {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
+  padding: 0.6rem 0;
 }
 
 .mobile-nav:not([hidden]) {
   display: flex;
+}
+
+/* Hamburger → X átmenet, ha nyitva a menü (vizuális visszajelzés) */
+.nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 @media (max-width: 1040px) {

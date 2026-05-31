@@ -12,7 +12,7 @@
   --muted: rgba(250, 251, 252, 0.72);
   --font-sans: "Montserrat", system-ui, sans-serif;
   --font-serif: "Playfair Display", Georgia, serif;
-  --header-h: 4.25rem;
+  --header-h: 70px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -24,6 +24,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -58,6 +59,8 @@ img {
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  height: var(--header-h);
   z-index: 100;
   background: linear-gradient(180deg, rgba(10, 22, 40, 0.95) 0%, rgba(10, 22, 40, 0.65) 70%, transparent 100%);
   backdrop-filter: blur(8px);
@@ -65,9 +68,11 @@ img {
 }
 
 .header-inner {
+  width: 100%;
   max-width: 1200px;
+  height: 100%;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -122,6 +127,7 @@ img {
   display: none;
   flex-direction: column;
   gap: 5px;
+  margin-left: auto;
   background: none;
   border: none;
   cursor: pointer;
